@@ -3,46 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio - Estadística Espacial</title>
+    <title>Portafolio Interactivo - Estadística Espacial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            --gradient2: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
-            color: #333;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
             line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient2);
+            z-index: 10;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
         }
         
         header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: var(--gradient);
             color: white;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -59,63 +125,138 @@
             transform: rotate(30deg);
         }
         
-        .course-info {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
         
-        .student-info {
-            background: linear-gradient(to right, #34495e, #2c3e50);
+        .course-info {
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             padding: 20px;
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .info-item i {
+            margin-right: 10px;
+            color: var(--success);
+        }
+        
+        .student-info {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .student-info::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 90%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .student-details {
             flex: 1;
         }
         
+        .student-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            background: var(--gradient2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
         .student-photo {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 40px;
+            font-size: 50px;
             margin-left: 20px;
-            border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        
+        .student-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .units-section {
             padding: 30px;
         }
         
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient2);
+            border-radius: 2px;
+        }
+        
         .unit {
             margin-bottom: 30px;
             padding: 25px;
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid var(--secondary);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary);
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .unit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(58, 12, 163, 0.05) 100%);
+            z-index: -1;
         }
         
         .unit:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .unit-header {
@@ -125,16 +266,22 @@
             margin-bottom: 15px;
         }
         
+        .unit-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--success);
+        }
+        
         .unit-content {
             display: none;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px dashed #ddd;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease;
         }
         
         .unit.active .unit-content {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
         
         @keyframes fadeIn {
@@ -145,21 +292,38 @@
         .btn {
             display: inline-flex;
             align-items: center;
-            background: linear-gradient(to right, var(--secondary), #2980b9);
+            background: var(--gradient2);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
+            border-radius: 50px;
+            font-weight: 500;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.6);
         }
         
         .btn i {
@@ -167,24 +331,45 @@
         }
         
         .upload-area {
-            border: 2px dashed #bdc3c7;
-            border-radius: 10px;
-            padding: 30px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 40px 20px;
             text-align: center;
             margin: 20px 0;
             transition: all 0.3s;
-            background-color: #f8f9fa;
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .upload-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
         }
         
         .upload-area:hover, .upload-area.dragover {
-            border-color: var(--secondary);
-            background-color: #e8f4fc;
+            border-color: var(--success);
+            transform: scale(1.02);
+        }
+        
+        .upload-area:hover::before, .upload-area.dragover::before {
+            opacity: 0.1;
         }
         
         .upload-area i {
-            font-size: 48px;
-            color: var(--secondary);
-            margin-bottom: 15px;
+            font-size: 60px;
+            color: var(--success);
+            margin-bottom: 20px;
+            display: block;
         }
         
         .file-input {
@@ -199,11 +384,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            background-color: #f1f8ff;
-            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
             margin-bottom: 10px;
-            border-left: 4px solid var(--secondary);
+            border-left: 4px solid var(--success);
+            transition: transform 0.3s;
+        }
+        
+        .file-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.08);
         }
         
         .file-info {
@@ -212,121 +403,171 @@
         }
         
         .file-icon {
-            margin-right: 10px;
-            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 24px;
+            color: var(--success);
         }
         
         .file-actions button {
             background: none;
             border: none;
-            color: var(--accent);
+            color: var(--light);
             cursor: pointer;
             margin-left: 10px;
             font-size: 16px;
+            transition: color 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .file-actions button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
         }
         
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin-top: 30px;
         }
         
         .skill-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
-            border-top: 4px solid var(--secondary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(58, 12, 163, 0.05) 100%);
+            z-index: -1;
         }
         
         .skill-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .skill-card i {
-            font-size: 36px;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-        
-        h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        h2 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
-        
-        p {
-            margin-bottom: 15px;
-            color: #555;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--primary);
-            color: white;
-            font-size: 14px;
+            font-size: 40px;
+            color: var(--success);
+            margin-bottom: 20px;
+            display: block;
         }
         
         .progress-bar {
-            height: 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
-            margin-top: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-top: 15px;
             overflow: hidden;
         }
         
         .progress {
             height: 100%;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            border-radius: 4px;
+            background: var(--gradient2);
+            border-radius: 5px;
             width: 0%;
-            transition: width 1s ease-in-out;
+            transition: width 1.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .tab-buttons {
             display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            padding: 5px;
+            position: relative;
+            overflow: hidden;
         }
         
         .tab-btn {
-            padding: 12px 25px;
-            background: none;
+            padding: 12px 30px;
+            background: transparent;
             border: none;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 600;
-            color: #777;
-            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
             transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+            z-index: 2;
         }
         
         .tab-btn.active {
-            color: var(--secondary);
-            border-bottom: 3px solid var(--secondary);
+            color: white;
+        }
+        
+        .tab-indicator {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            height: calc(100% - 10px);
+            background: var(--gradient2);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            z-index: 1;
         }
         
         .tab-content {
             display: none;
+            animation: fadeIn 0.5s ease;
         }
         
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .university-logo {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 10px;
+            color: var(--success);
         }
         
         @media (max-width: 768px) {
@@ -336,7 +577,7 @@
             }
             
             .student-photo {
-                margin: 15px auto 0;
+                margin: 20px auto 0;
             }
             
             .skills-grid {
@@ -349,66 +590,104 @@
             }
             
             .btn {
-                margin-top: 10px;
+                margin-top: 15px;
             }
+            
+            .tab-buttons {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+            
+            .tab-indicator {
+                display: none;
+            }
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
     <div class="container">
         <header>
-            <h1>EST334 - Estadística Espacial</h1>
-            <p>Portafolio de trabajos y proyectos del curso</p>
+            <div class="header-content">
+                <h1 class="glow">EST334 - Estadística Espacial</h1>
+                <p>Portafolio Interactivo de Trabajos y Proyectos</p>
+            </div>
         </header>
         
         <div class="course-info">
-            <div>
+            <div class="info-item">
+                <i class="fas fa-chalkboard-teacher"></i>
                 <p><strong>Docente:</strong> Ing. Fred</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
                 <p><strong>Semestre:</strong> 2025-II</p>
             </div>
-            <div>
+            <div class="info-item">
+                <i class="fas fa-calendar"></i>
                 <p><strong>Año:</strong> 2025</p>
-                <p><strong>Créditos:</strong> 4</p>
             </div>
-            <div>
-                <p><strong>UNAP</strong></p>
-                <p><strong>FINESI</strong></p>
+            <div class="info-item">
+                <i class="fas fa-star"></i>
+                <p><strong>Créditos:</strong> 4</p>
             </div>
         </div>
         
         <div class="student-info">
             <div class="student-details">
-                <p><strong>Estudiante:</strong> Wilmer Ticona Incacutipa</p>
-                <p><strong>Código:</strong> 213990</p>
-                <p><strong>Escuela Profesional:</strong> Ingeniería Estadística e Informática</p>
-                <p><strong>Universidad Nacional del Altipiano - Puno</strong></p>
+                <h2 class="student-name">Wilmer Ticona Incacutipa</h2>
+                <p><i class="fas fa-id-card"></i> <strong>Código:</strong> 213990</p>
+                <p><i class="fas fa-graduation-cap"></i> <strong>Escuela Profesional:</strong> Ingeniería Estadística e Informática</p>
+                <p><i class="fas fa-university"></i> <strong>Universidad Nacional del Altipiano - Puno</strong></p>
             </div>
-            <div class="student-photo">
+            <div class="student-photo pulse">
                 <i class="fas fa-user-graduate"></i>
             </div>
         </div>
         
         <div class="units-section">
             <div class="tab-buttons">
-                <button class="tab-btn active" data-tab="units">Unidades</button>
-                <button class="tab-btn" data-tab="skills">Habilidades</button>
-                <button class="tab-btn" data-tab="progress">Progreso</button>
+                <div class="tab-indicator" style="width: 120px; transform: translateX(0);"></div>
+                <button class="tab-btn active" data-tab="units"><i class="fas fa-folder-open"></i> Unidades</button>
+                <button class="tab-btn" data-tab="skills"><i class="fas fa-chart-bar"></i> Habilidades</button>
+                <button class="tab-btn" data-tab="progress"><i class="fas fa-tasks"></i> Progreso</button>
             </div>
             
             <div class="tab-content active" id="units-tab">
+                <h2 class="section-title">Trabajos por Unidad</h2>
+                
                 <div class="unit active">
                     <div class="unit-header">
-                        <h2>Unidad I - Análisis de Patrones Espaciales</h2>
+                        <h3 class="unit-title"><i class="fas fa-map-marked-alt"></i> Unidad I - Análisis de Patrones Espaciales</h3>
                         <button class="btn toggle-unit"><i class="fas fa-chevron-down"></i> Ver Trabajos</button>
                     </div>
-                    <p>Trabajos desarrollados por mi persona con habilidades para identificar y analizar patrones espaciales en conjuntos de datos georeferenciados.</p>
+                    <p>Trabajos desarrollados con habilidades para identificar y analizar patrones espaciales en conjuntos de datos georeferenciados.</p>
                     
                     <div class="unit-content">
                         <div class="upload-area" id="upload-area-1">
                             <i class="fas fa-cloud-upload-alt"></i>
                             <h3>Subir Trabajos de la Unidad I</h3>
                             <p>Arrastra tus archivos PDF o código aquí o haz clic para seleccionar</p>
-                            <input type="file" class="file-input" id="file-input-1" multiple accept=".pdf,.py,.r,.zip">
+                            <input type="file" class="file-input" id="file-input-1" multiple accept=".pdf,.py,.r,.zip,.doc,.docx">
                             <button class="btn" onclick="document.getElementById('file-input-1').click()">
                                 <i class="fas fa-plus"></i> Seleccionar Archivos
                             </button>
@@ -424,9 +703,9 @@
                                     </div>
                                 </div>
                                 <div class="file-actions">
-                                    <button><i class="fas fa-eye"></i></button>
-                                    <button><i class="fas fa-download"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
+                                    <button title="Vista previa"><i class="fas fa-eye"></i></button>
+                                    <button title="Descargar"><i class="fas fa-download"></i></button>
+                                    <button title="Eliminar"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
                             <div class="file-item">
@@ -438,9 +717,9 @@
                                     </div>
                                 </div>
                                 <div class="file-actions">
-                                    <button><i class="fas fa-eye"></i></button>
-                                    <button><i class="fas fa-download"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
+                                    <button title="Vista previa"><i class="fas fa-eye"></i></button>
+                                    <button title="Descargar"><i class="fas fa-download"></i></button>
+                                    <button title="Eliminar"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -449,7 +728,7 @@
                 
                 <div class="unit">
                     <div class="unit-header">
-                        <h2>Unidad II - Modelado Geoestadístico</h2>
+                        <h3 class="unit-title"><i class="fas fa-chart-line"></i> Unidad II - Modelado Geoestadístico</h3>
                         <button class="btn toggle-unit"><i class="fas fa-chevron-down"></i> Ver Trabajos</button>
                     </div>
                     <p>Aplicar métodos geoestadísticos para modelar la variabilidad espacial y temporal de fenómenos naturales.</p>
@@ -459,7 +738,7 @@
                             <i class="fas fa-cloud-upload-alt"></i>
                             <h3>Subir Trabajos de la Unidad II</h3>
                             <p>Arrastra tus archivos PDF o código aquí o haz clic para seleccionar</p>
-                            <input type="file" class="file-input" id="file-input-2" multiple accept=".pdf,.py,.r,.zip">
+                            <input type="file" class="file-input" id="file-input-2" multiple accept=".pdf,.py,.r,.zip,.doc,.docx">
                             <button class="btn" onclick="document.getElementById('file-input-2').click()">
                                 <i class="fas fa-plus"></i> Seleccionar Archivos
                             </button>
@@ -475,9 +754,9 @@
                                     </div>
                                 </div>
                                 <div class="file-actions">
-                                    <button><i class="fas fa-eye"></i></button>
-                                    <button><i class="fas fa-download"></i></button>
-                                    <button><i class="fas fa-trash"></i></button>
+                                    <button title="Vista previa"><i class="fas fa-eye"></i></button>
+                                    <button title="Descargar"><i class="fas fa-download"></i></button>
+                                    <button title="Eliminar"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -486,33 +765,36 @@
             </div>
             
             <div class="tab-content" id="skills-tab">
-                <h2>Habilidades y Competencias</h2>
+                <h2 class="section-title">Habilidades y Competencias</h2>
                 <div class="skills-grid">
                     <div class="skill-card">
                         <i class="fas fa-map-marked-alt"></i>
                         <h3>Análisis Espacial</h3>
-                        <p>Desarrollar habilidades para identificar y analizar patrones espaciales en conjuntos de datos georeferenciados.</p>
+                        <p>Identificar y analizar patrones espaciales en conjuntos de datos georeferenciados.</p>
                         <div class="progress-bar">
                             <div class="progress" style="width: 85%"></div>
                         </div>
+                        <p class="progress-text">85%</p>
                     </div>
                     
                     <div class="skill-card">
                         <i class="fas fa-chart-line"></i>
                         <h3>Geoestadística</h3>
-                        <p>Aplicar métodos geoestadísticos para modelar la variabilidad espacial y temporal de fenómenos naturales.</p>
+                        <p>Aplicar métodos geoestadísticos para modelar la variabilidad espacial y temporal.</p>
                         <div class="progress-bar">
                             <div class="progress" style="width: 75%"></div>
                         </div>
+                        <p class="progress-text">75%</p>
                     </div>
                     
                     <div class="skill-card">
                         <i class="fas fa-calculator"></i>
                         <h3>Interpolación</h3>
-                        <p>Implementar técnicas de interpolación espacial como Kriging para estimar valores en ubicaciones no muestreadas.</p>
+                        <p>Implementar técnicas de interpolación espacial como Kriging para estimar valores.</p>
                         <div class="progress-bar">
                             <div class="progress" style="width: 70%"></div>
                         </div>
+                        <p class="progress-text">70%</p>
                     </div>
                     
                     <div class="skill-card">
@@ -522,33 +804,52 @@
                         <div class="progress-bar">
                             <div class="progress" style="width: 80%"></div>
                         </div>
+                        <p class="progress-text">80%</p>
                     </div>
                 </div>
             </div>
             
             <div class="tab-content" id="progress-tab">
-                <h2>Progreso del Curso</h2>
-                <div class="skill-card">
-                    <h3>Unidad I - Análisis de Patrones Espaciales</h3>
-                    <p>Completado: 4 de 5 tareas</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 80%"></div>
+                <h2 class="section-title">Progreso del Curso</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Unidad I - Análisis de Patrones</h3>
+                        <p>Completado: 4 de 5 tareas</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%"></div>
+                        </div>
+                        <p class="progress-text">80%</p>
                     </div>
-                </div>
-                
-                <div class="skill-card">
-                    <h3>Unidad II - Modelado Geoestadístico</h3>
-                    <p>Completado: 2 de 4 tareas</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 50%"></div>
+                    
+                    <div class="skill-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Unidad II - Modelado Geoestadístico</h3>
+                        <p>Completado: 2 de 4 tareas</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%"></div>
+                        </div>
+                        <p class="progress-text">50%</p>
                     </div>
-                </div>
-                
-                <div class="skill-card">
-                    <h3>Proyecto Final</h3>
-                    <p>Completado: 30%</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 30%"></div>
+                    
+                    <div class="skill-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Proyecto Final</h3>
+                        <p>Completado: 30% del proyecto</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 30%"></div>
+                        </div>
+                        <p class="progress-text">30%</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <i class="fas fa-award"></i>
+                        <h3>Calificación General</h3>
+                        <p>Promedio actual del curso</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%"></div>
+                        </div>
+                        <p class="progress-text">85%</p>
                     </div>
                 </div>
             </div>
@@ -556,7 +857,7 @@
         
         <footer>
             <p>Portafolio de Estadística Espacial - EST334 - 2025</p>
-            <p>Universidad Nacional del Altipiano - Puno</p>
+            <p class="university-logo">Universidad Nacional del Altipiano - Puno</p>
         </footer>
     </div>
 
@@ -585,6 +886,15 @@
                 
                 // Add active class to clicked button
                 this.classList.add('active');
+                
+                // Update tab indicator position
+                const tabIndex = Array.from(this.parentElement.children).indexOf(this);
+                const tabIndicator = document.querySelector('.tab-indicator');
+                const tabWidth = this.offsetWidth;
+                const tabOffset = this.offsetLeft;
+                
+                tabIndicator.style.width = `${tabWidth}px`;
+                tabIndicator.style.transform = `translateX(${tabOffset}px)`;
                 
                 // Show corresponding content
                 const tabId = this.getAttribute('data-tab') + '-tab';
@@ -617,17 +927,35 @@
                                 </div>
                             </div>
                             <div class="file-actions">
-                                <button><i class="fas fa-eye"></i></button>
-                                <button><i class="fas fa-download"></i></button>
-                                <button><i class="fas fa-trash"></i></button>
+                                <button title="Vista previa"><i class="fas fa-eye"></i></button>
+                                <button title="Descargar"><i class="fas fa-download"></i></button>
+                                <button title="Eliminar"><i class="fas fa-trash"></i></button>
                             </div>
                         `;
                         
                         fileList.appendChild(fileItem);
                     }
                     
-                    // Show success message
-                    alert('Archivos subidos exitosamente');
+                    // Show success message with animation
+                    const successMsg = document.createElement('div');
+                    successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Archivos subidos exitosamente';
+                    successMsg.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: var(--gradient2);
+                        color: white;
+                        padding: 15px 25px;
+                        border-radius: 10px;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                        z-index: 1000;
+                        animation: fadeIn 0.5s, fadeOut 0.5s 2.5s forwards;
+                    `;
+                    document.body.appendChild(successMsg);
+                    
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 3000);
                 }
             });
         });
@@ -657,6 +985,12 @@
                     document.getElementById(inputId).dispatchEvent(event);
                 }
             });
+            
+            // Click to upload
+            area.addEventListener('click', function() {
+                const inputId = 'file-input-' + this.id.split('-')[2];
+                document.getElementById(inputId).click();
+            });
         });
         
         // Delete file functionality
@@ -670,6 +1004,22 @@
             }
         });
         
+        // Animate progress bars on scroll
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        }
+        
+        // Initialize progress bars animation when skills tab is opened
+        document.querySelector('[data-tab="skills"]').addEventListener('click', animateProgressBars);
+        document.querySelector('[data-tab="progress"]').addEventListener('click', animateProgressBars);
+        
         // Add fadeOut animation
         const style = document.createElement('style');
         style.textContent = `
@@ -679,6 +1029,9 @@
             }
         `;
         document.head.appendChild(style);
+        
+        // Initialize with first unit open
+        document.querySelector('.unit').classList.add('active');
     </script>
 </body>
 </html>
