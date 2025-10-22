@@ -3,1290 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Interactivo - Estadística Espacial</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Portafolio Académico - Yeni Rosmirian Phocco Soncco</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-            --gradient2: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: var(--light);
+            background-color: #f9f9f9;
+            color: var(--text-color);
             line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
         }
         
         .container {
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-        
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient2);
-            z-index: 10;
-        }
-        
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-        
-        .floating-element:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .floating-element:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            left: 80%;
-            animation-delay: -5s;
-        }
-        
-        .floating-element:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            top: 80%;
-            left: 20%;
-            animation-delay: -10s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-            }
+            padding: 20px;
         }
         
         header {
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 30px;
+            padding: 2rem 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
+            box-shadow: var(--shadow);
         }
         
         .header-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .course-info {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 20px;
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .info-item {
-            display: flex;
+            flex-direction: column;
             align-items: center;
-            margin: 5px 0;
         }
         
-        .info-item i {
-            margin-right: 10px;
-            color: var(--success);
-        }
-        
-        .student-info {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        
-        .student-info::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 5%;
-            width: 90%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .student-details {
-            flex: 1;
-        }
-        
-        .student-name {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            background: var(--gradient2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-        
-        .student-photo {
-            width: 140px;
-            height: 140px;
+        .profile-img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            background: var(--gradient);
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 1rem;
+            background-color: #ddd;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 50px;
-            margin-left: 20px;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            transition: transform 0.5s, box-shadow 0.5s;
         }
         
-        .student-photo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        .nav-list {
+            display: flex;
+            list-style: none;
         }
         
-        .units-section {
-            padding: 30px;
+        .nav-item {
+            padding: 1rem 1.5rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        section {
+            padding: 4rem 0;
         }
         
         .section-title {
-            font-size: 28px;
-            margin-bottom: 30px;
             text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
             position: relative;
-            padding-bottom: 15px;
         }
         
         .section-title::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
+            display: block;
+            width: 80px;
             height: 4px;
-            background: var(--gradient2);
-            border-radius: 2px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto;
         }
         
-        .unit {
-            margin-bottom: 30px;
-            padding: 25px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid var(--primary);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .university-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-item i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .units-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .unit-card {
+            background-color: white;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
         }
         
-        .unit::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(58, 12, 163, 0.05) 100%);
-            z-index: -1;
-        }
-        
-        .unit:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        .unit-card:hover {
+            transform: translateY(-5px);
         }
         
         .unit-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .unit-body {
+            padding: 1.5rem;
+        }
+        
+        .work-list {
+            list-style: none;
+        }
+        
+        .work-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
         }
         
-        .unit-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--success);
-        }
-        
-        .unit-content {
-            display: none;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .unit.active .unit-content {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .work-item:last-child {
+            border-bottom: none;
         }
         
         .btn {
-            display: inline-flex;
-            align-items: center;
-            background: var(--gradient2);
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
             color: white;
-            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s;
+            border-radius: 4px;
+            transition: background-color 0.3s;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.6);
+            background-color: var(--primary-color);
         }
         
-        .btn i {
-            margin-right: 8px;
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
         }
         
-        .upload-area {
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            padding: 40px 20px;
-            text-align: center;
-            margin: 20px 0;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.03);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .upload-area::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
-        }
-        
-        .upload-area:hover, .upload-area.dragover {
-            border-color: var(--success);
-            transform: scale(1.02);
-        }
-        
-        .upload-area:hover::before, .upload-area.dragover::before {
-            opacity: 0.1;
-        }
-        
-        .upload-area i {
-            font-size: 60px;
-            color: var(--success);
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .file-input {
-            display: none;
-        }
-        
-        .file-list {
-            margin-top: 20px;
-        }
-        
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 4px solid var(--success);
-            transition: transform 0.3s;
-        }
-        
-        .file-item:hover {
-            transform: translateX(5px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .file-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .file-icon {
-            margin-right: 15px;
-            font-size: 24px;
-            color: var(--success);
-        }
-        
-        .file-actions button {
-            background: none;
-            border: none;
-            color: var(--light);
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 16px;
-            transition: color 0.3s;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .file-actions button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--accent);
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-top: 4px solid var(--primary);
-        }
-        
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(58, 12, 163, 0.05) 100%);
-            z-index: -1;
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .skill-card i {
-            font-size: 40px;
-            color: var(--success);
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .progress-bar {
-            height: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            margin-top: 15px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: var(--gradient2);
-            border-radius: 5px;
-            width: 0%;
-            transition: width 1.5s ease-in-out;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .progress::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .tab-buttons {
-            display: flex;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
-            padding: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .tab-btn {
-            padding: 12px 30px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.7);
-            border-radius: 50px;
-            transition: all 0.3s;
-            flex: 1;
-            text-align: center;
-            z-index: 2;
-        }
-        
-        .tab-btn.active {
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
             color: white;
         }
         
-        .tab-indicator {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            height: calc(100% - 10px);
-            background: var(--gradient2);
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            z-index: 1;
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
         }
         
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
         
-        .tab-content.active {
+        label {
             display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
         }
         
         footer {
+            background-color: var(--primary-color);
+            color: white;
             text-align: center;
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.2);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .university-logo {
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 10px;
-            color: var(--success);
-        }
-        
-        /* Modal para visualización de archivos */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background: rgba(30, 30, 46, 0.95);
-            border-radius: 15px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow: auto;
-            padding: 25px;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .modal-title {
-            font-size: 22px;
-            color: var(--success);
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 24px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-        
-        .close-modal:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .file-preview {
-            width: 100%;
-            height: 70vh;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .code-preview {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            white-space: pre-wrap;
-            max-height: 70vh;
-            overflow: auto;
-        }
-        
-        .preview-actions {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-            gap: 10px;
+            padding: 2rem 0;
         }
         
         @media (max-width: 768px) {
-            .course-info, .student-info {
+            .nav-list {
                 flex-direction: column;
-                text-align: center;
+                align-items: center;
             }
             
-            .student-photo {
-                margin: 20px auto 0;
+            .nav-item {
+                padding: 0.5rem 1rem;
             }
             
-            .skills-grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 2rem;
             }
-            
-            .unit-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .btn {
-                margin-top: 15px;
-            }
-            
-            .tab-buttons {
-                flex-direction: column;
-                border-radius: 15px;
-            }
-            
-            .tab-indicator {
-                display: none;
-            }
-            
-            .modal-content {
-                width: 95%;
-                padding: 15px;
-            }
-        }
-        
-        .glow {
-            text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-    </div>
+    <header>
+        <div class="container header-content">
+            <img src="https://via.placeholder.com/150" alt="Foto de perfil" class="profile-img">
+            <h1>Yeni Rosmirian Phocco Soncco</h1>
+            <p class="subtitle">Estudiante de Ingeniería - Universidad Nacional del Altiplano</p>
+        </div>
+    </header>
     
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1 class="glow">EST334 - Estadística Espacial</h1>
-                <p>Portafolio Interactivo de Trabajos y Proyectos</p>
-            </div>
-        </header>
-        
-        <div class="course-info">
-            <div class="info-item">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <p><strong>Docente:</strong> Ing. Fred</p>
-            </div>
-            <div class="info-item">
-                <i class="fas fa-calendar-alt"></i>
-                <p><strong>Semestre:</strong> 2025-II</p>
-            </div>
-            <div class="info-item">
-                <i class="fas fa-calendar"></i>
-                <p><strong>Año:</strong> 2025</p>
-            </div>
-            <div class="info-item">
-                <i class="fas fa-star"></i>
-                <p><strong>Créditos:</strong> 4</p>
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="#trabajos" class="nav-link">Trabajos</a></li>
+                <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="inicio">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hola, soy Yeni Rosmirian Phocco Soncco, estudiante de la Facultad de Ingeniería de la Escuela Profesional de Ingeniería en la Universidad Nacional del Altiplano.</p>
+                    <p>En esta página web presento los trabajos académicos realizados durante el ciclo actual, organizados por unidades. Aquí podrás encontrar todos los proyectos y tareas que he desarrollado para mis cursos.</p>
+                    <p>Mi objetivo es aplicar los conocimientos adquiridos en el aula para resolver problemas del mundo real y contribuir al desarrollo de soluciones innovadoras en el campo de la ingeniería.</p>
+                </div>
+                <div class="university-info">
+                    <h3>Información Académica</h3>
+                    <div class="info-item">
+                        <i>🏫</i>
+                        <span>Universidad Nacional del Altiplano</span>
+                    </div>
+                    <div class="info-item">
+                        <i>🎓</i>
+                        <span>Facultad de Ingeniería</span>
+                    </div>
+                    <div class="info-item">
+                        <i>📚</i>
+                        <span>Escuela Profesional de Ingeniería</span>
+                    </div>
+                    <div class="info-item">
+                        <i>👨‍🏫</i>
+                        <span>Docente: Fred Torrez Cruz</span>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="student-info">
-            <div class="student-details">
-                <h2 class="student-name">Wilmer Ticona Incacutipa</h2>
-                <p><i class="fas fa-id-card"></i> <strong>Código:</strong> 213990</p>
-                <p><i class="fas fa-graduation-cap"></i> <strong>Escuela Profesional:</strong> Ingeniería Estadística e Informática</p>
-                <p><i class="fas fa-university"></i> <strong>Universidad Nacional del Altipiano - Puno</strong></p>
-            </div>
-            <div class="student-photo pulse">
-                <i class="fas fa-user-graduate"></i>
-            </div>
-        </div>
-        
-        <div class="units-section">
-            <div class="tab-buttons">
-                <div class="tab-indicator" style="width: 120px; transform: translateX(0);"></div>
-                <button class="tab-btn active" data-tab="units"><i class="fas fa-folder-open"></i> Unidades</button>
-                <button class="tab-btn" data-tab="skills"><i class="fas fa-chart-bar"></i> Habilidades</button>
-                <button class="tab-btn" data-tab="progress"><i class="fas fa-tasks"></i> Progreso</button>
-            </div>
-            
-            <div class="tab-content active" id="units-tab">
-                <h2 class="section-title">Trabajos por Unidad</h2>
-                
-                <div class="unit active">
+    </section>
+    
+    <section id="trabajos" style="background-color: #f0f5ff;">
+        <div class="container">
+            <h2 class="section-title">Mis Trabajos Académicos</h2>
+            <div class="units-container">
+                <div class="unit-card">
                     <div class="unit-header">
-                        <h3 class="unit-title"><i class="fas fa-map-marked-alt"></i> Unidad I - Análisis de Patrones Espaciales</h3>
-                        <button class="btn toggle-unit"><i class="fas fa-chevron-down"></i> Ver Trabajos</button>
+                        <h3>I Unidad</h3>
                     </div>
-                    <p>Trabajos desarrollados con habilidades para identificar y analizar patrones espaciales en conjuntos de datos georeferenciados.</p>
-                    
-                    <div class="unit-content">
-                        <div class="upload-area" id="upload-area-1">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h3>Subir Trabajos de la Unidad I</h3>
-                            <p>Arrastra tus archivos PDF o código aquí o haz clic para seleccionar</p>
-                            <input type="file" class="file-input" id="file-input-1" multiple accept=".pdf,.py,.r,.txt,.doc,.docx">
-                            <button class="btn" onclick="document.getElementById('file-input-1').click()">
-                                <i class="fas fa-plus"></i> Seleccionar Archivos
-                            </button>
-                        </div>
-                        
-                        <div class="file-list" id="file-list-1">
-                            <!-- Los archivos se agregarán aquí dinámicamente -->
-                        </div>
+                    <div class="unit-body">
+                        <p>Trabajos desarrollados durante la primera unidad académica:</p>
+                        <ul class="work-list">
+                            <li class="work-item">
+                                <span>Proyecto de Investigación 1</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                            <li class="work-item">
+                                <span>Práctica de Laboratorio 1</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                            <li class="work-item">
+                                <span>Análisis de Casos</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                            <li class="work-item">
+                                <span>Presentación Teórica</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class="unit">
+                <div class="unit-card">
                     <div class="unit-header">
-                        <h3 class="unit-title"><i class="fas fa-chart-line"></i> Unidad II - Modelado Geoestadístico</h3>
-                        <button class="btn toggle-unit"><i class="fas fa-chevron-down"></i> Ver Trabajos</button>
+                        <h3>II Unidad</h3>
                     </div>
-                    <p>Aplicar métodos geoestadísticos para modelar la variabilidad espacial y temporal de fenómenos naturales.</p>
-                    
-                    <div class="unit-content">
-                        <div class="upload-area" id="upload-area-2">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h3>Subir Trabajos de la Unidad II</h3>
-                            <p>Arrastra tus archivos PDF o código aquí o haz clic para seleccionar</p>
-                            <input type="file" class="file-input" id="file-input-2" multiple accept=".pdf,.py,.r,.txt,.doc,.docx">
-                            <button class="btn" onclick="document.getElementById('file-input-2').click()">
-                                <i class="fas fa-plus"></i> Seleccionar Archivos
-                            </button>
-                        </div>
-                        
-                        <div class="file-list" id="file-list-2">
-                            <!-- Los archivos se agregarán aquí dinámicamente -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="skills-tab">
-                <h2 class="section-title">Habilidades y Competencias</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>Análisis Espacial</h3>
-                        <p>Identificar y analizar patrones espaciales en conjuntos de datos georeferenciados.</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                        <p class="progress-text">85%</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Geoestadística</h3>
-                        <p>Aplicar métodos geoestadísticos para modelar la variabilidad espacial y temporal.</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                        <p class="progress-text">75%</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <i class="fas fa-calculator"></i>
-                        <h3>Interpolación</h3>
-                        <p>Implementar técnicas de interpolación espacial como Kriging para estimar valores.</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%"></div>
-                        </div>
-                        <p class="progress-text">70%</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <i class="fas fa-laptop-code"></i>
-                        <h3>Herramientas</h3>
-                        <p>Dominar el uso de R, Python y SIG para el procesamiento y análisis de datos espaciales.</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                        <p class="progress-text">80%</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="progress-tab">
-                <h2 class="section-title">Progreso del Curso</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>Unidad I - Análisis de Patrones</h3>
-                        <p>Completado: 4 de 5 tareas</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                        <p class="progress-text">80%</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Unidad II - Modelado Geoestadístico</h3>
-                        <p>Completado: 2 de 4 tareas</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 50%"></div>
-                        </div>
-                        <p class="progress-text">50%</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <i class="fas fa-project-diagram"></i>
-                        <h3>Proyecto Final</h3>
-                        <p>Completado: 30% del proyecto</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 30%"></div>
-                        </div>
-                        <p class="progress-text">30%</p>
-                    </div>
-                    
-                    <div class="skill-card">
-                        <i class="fas fa-award"></i>
-                        <h3>Calificación General</h3>
-                        <p>Promedio actual del curso</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                        <p class="progress-text">85%</p>
+                    <div class="unit-body">
+                        <p>Trabajos desarrollados durante la segunda unidad académica:</p>
+                        <ul class="work-list">
+                            <li class="work-item">
+                                <span>Proyecto de Investigación 2</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                            <li class="work-item">
+                                <span>Práctica de Laboratorio 2</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                            <li class="work-item">
+                                <span>Simulación de Procesos</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                            <li class="work-item">
+                                <span>Informe Técnico</span>
+                                <a href="#" class="btn btn-outline">Ver</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <footer>
-            <p>Portafolio de Estadística Espacial - EST334 - 2025</p>
-            <p class="university-logo">Universidad Nacional del Altipiano - Puno</p>
-        </footer>
-    </div>
-
-    <!-- Modal para visualización de archivos -->
-    <div class="modal" id="fileModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle">Vista Previa del Archivo</h3>
-                <button class="close-modal" id="closeModal">&times;</button>
-            </div>
-            <div id="modalBody">
-                <!-- Contenido del archivo se cargará aquí -->
-            </div>
-            <div class="preview-actions">
-                <button class="btn" id="downloadBtn"><i class="fas fa-download"></i> Descargar</button>
-                <button class="btn" id="closeBtn"><i class="fas fa-times"></i> Cerrar</button>
+    </section>
+    
+    <section id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Asunto:</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
             </div>
         </div>
-    </div>
-
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Yeni Rosmirian Phocco Soncco - Universidad Nacional del Altiplano</p>
+            <p>Facultad de Ingeniería - Escuela Profesional de Ingeniería</p>
+            <p>Docente: Fred Torrez Cruz</p>
+        </div>
+    </footer>
+    
     <script>
-        // Almacenamiento de archivos en memoria
-        const storedFiles = {
-            unit1: [],
-            unit2: []
-        };
-
-        // Toggle unidades
-        document.querySelectorAll('.toggle-unit').forEach(button => {
-            button.addEventListener('click', function() {
-                const unit = this.closest('.unit');
-                unit.classList.toggle('active');
-                
-                const icon = this.querySelector('i');
-                if (unit.classList.contains('active')) {
-                    icon.className = 'fas fa-chevron-up';
-                } else {
-                    icon.className = 'fas fa-chevron-down';
-                }
-            });
-        });
-        
-        // Tabs functionality
-        document.querySelectorAll('.tab-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons and contents
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // Update tab indicator position
-                const tabIndex = Array.from(this.parentElement.children).indexOf(this);
-                const tabIndicator = document.querySelector('.tab-indicator');
-                const tabWidth = this.offsetWidth;
-                const tabOffset = this.offsetLeft;
-                
-                tabIndicator.style.width = `${tabWidth}px`;
-                tabIndicator.style.transform = `translateX(${tabOffset}px)`;
-                
-                // Show corresponding content
-                const tabId = this.getAttribute('data-tab') + '-tab';
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // File upload functionality
-        document.querySelectorAll('.file-input').forEach(input => {
-            input.addEventListener('change', function() {
-                const unitId = this.id.split('-')[2];
-                const fileListId = 'file-list-' + unitId;
-                const fileList = document.getElementById(fileListId);
-                
-                if (this.files.length > 0) {
-                    for (let i = 0; i < this.files.length; i++) {
-                        const file = this.files[i];
-                        const fileId = 'file_' + Date.now() + '_' + i;
-                        
-                        // Almacenar archivo en memoria
-                        const fileData = {
-                            id: fileId,
-                            name: file.name,
-                            type: file.type,
-                            size: file.size,
-                            content: file,
-                            unit: unitId
-                        };
-                        
-                        storedFiles[`unit${unitId}`].push(fileData);
-                        
-                        // Crear elemento visual para el archivo
-                        const fileItem = document.createElement('div');
-                        fileItem.className = 'file-item';
-                        fileItem.id = fileId;
-                        
-                        const fileIcon = file.type === 'application/pdf' ? 
-                            'fa-file-pdf' : 
-                            'fa-file-code';
-                        
-                        fileItem.innerHTML = `
-                            <div class="file-info">
-                                <i class="fas ${fileIcon} file-icon"></i>
-                                <div>
-                                    <div>${file.name}</div>
-                                    <small>Subido: ${new Date().toLocaleDateString()} - ${(file.size / 1024 / 1024).toFixed(2)} MB</small>
-                                </div>
-                            </div>
-                            <div class="file-actions">
-                                <button title="Vista previa" onclick="viewFile('${fileId}')"><i class="fas fa-eye"></i></button>
-                                <button title="Descargar" onclick="downloadFile('${fileId}')"><i class="fas fa-download"></i></button>
-                                <button title="Eliminar" onclick="deleteFile('${fileId}')"><i class="fas fa-trash"></i></button>
-                            </div>
-                        `;
-                        
-                        fileList.appendChild(fileItem);
-                    }
-                    
-                    // Mostrar mensaje de éxito
-                    showNotification('Archivos subidos exitosamente', 'success');
-                }
-            });
-        });
-        
-        // Drag and drop functionality
-        document.querySelectorAll('.upload-area').forEach(area => {
-            area.addEventListener('dragover', function(e) {
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                this.classList.add('dragover');
-            });
-            
-            area.addEventListener('dragleave', function() {
-                this.classList.remove('dragover');
-            });
-            
-            area.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.classList.remove('dragover');
-                
-                const files = e.dataTransfer.files;
-                if (files.length > 0) {
-                    const inputId = 'file-input-' + this.id.split('-')[2];
-                    document.getElementById(inputId).files = files;
-                    
-                    // Trigger change event
-                    const event = new Event('change');
-                    document.getElementById(inputId).dispatchEvent(event);
-                }
-            });
-            
-            // Click to upload
-            area.addEventListener('click', function() {
-                const inputId = 'file-input-' + this.id.split('-')[2];
-                document.getElementById(inputId).click();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             });
         });
         
-        // Funciones para manejar archivos
-        function viewFile(fileId) {
-            const fileData = findFileById(fileId);
-            if (!fileData) return;
-            
-            const modal = document.getElementById('fileModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalBody = document.getElementById('modalBody');
-            const downloadBtn = document.getElementById('downloadBtn');
-            
-            modalTitle.textContent = `Vista Previa: ${fileData.name}`;
-            
-            // Configurar botón de descarga
-            downloadBtn.onclick = () => downloadFile(fileId);
-            
-            // Mostrar contenido según el tipo de archivo
-            if (fileData.type === 'application/pdf') {
-                // Para PDF, usar objeto embed
-                const fileURL = URL.createObjectURL(fileData.content);
-                modalBody.innerHTML = `<embed class="file-preview" src="${fileURL}" type="application/pdf">`;
-            } else if (fileData.type.includes('text') || fileData.name.endsWith('.py') || 
-                       fileData.name.endsWith('.r') || fileData.name.endsWith('.txt')) {
-                // Para archivos de texto y código, mostrar el contenido
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    modalBody.innerHTML = `<div class="code-preview">${e.target.result}</div>`;
-                };
-                reader.readAsText(fileData.content);
-            } else {
-                // Para otros tipos de archivo, mostrar mensaje
-                modalBody.innerHTML = `<div style="text-align: center; padding: 40px;">
-                    <i class="fas fa-file" style="font-size: 60px; color: var(--success); margin-bottom: 20px;"></i>
-                    <h3>Vista previa no disponible</h3>
-                    <p>Este tipo de archivo no se puede previsualizar en el navegador.</p>
-                    <p>Puedes descargarlo para verlo en tu dispositivo.</p>
-                </div>`;
-            }
-            
-            modal.style.display = 'flex';
-        }
-        
-        function downloadFile(fileId) {
-            const fileData = findFileById(fileId);
-            if (!fileData) return;
-            
-            const url = URL.createObjectURL(fileData.content);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileData.name;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showNotification(`Archivo "${fileData.name}" descargado`, 'success');
-        }
-        
-        function deleteFile(fileId) {
-            const fileData = findFileById(fileId);
-            if (!fileData) return;
-            
-            // Eliminar de la memoria
-            const unitKey = `unit${fileData.unit}`;
-            storedFiles[unitKey] = storedFiles[unitKey].filter(file => file.id !== fileId);
-            
-            // Eliminar visualmente
-            const fileElement = document.getElementById(fileId);
-            fileElement.style.animation = 'fadeOut 0.5s ease';
-            setTimeout(() => {
-                fileElement.remove();
-                showNotification(`Archivo "${fileData.name}" eliminado`, 'info');
-            }, 500);
-        }
-        
-        function findFileById(fileId) {
-            for (const unitKey in storedFiles) {
-                const file = storedFiles[unitKey].find(f => f.id === fileId);
-                if (file) return file;
-            }
-            return null;
-        }
-        
-        // Cerrar modal
-        document.getElementById('closeModal').addEventListener('click', closeModal);
-        document.getElementById('closeBtn').addEventListener('click', closeModal);
-        
-        function closeModal() {
-            document.getElementById('fileModal').style.display = 'none';
-            // Liberar URLs de objetos
-            const embeds = document.querySelectorAll('embed');
-            embeds.forEach(embed => {
-                if (embed.src.startsWith('blob:')) {
-                    URL.revokeObjectURL(embed.src);
-                }
-            });
-        }
-        
-        // Cerrar modal al hacer clic fuera
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('fileModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-        
-        // Mostrar notificaciones
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? 'var(--gradient)' : 'var(--gradient2)'};
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                z-index: 1000;
-                animation: fadeIn 0.5s, fadeOut 0.5s 2.5s forwards;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            `;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-        
-        // Animate progress bars on scroll
-        function animateProgressBars() {
-            const progressBars = document.querySelectorAll('.progress');
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 300);
-            });
-        }
-        
-        // Initialize progress bars animation when skills tab is opened
-        document.querySelector('[data-tab="skills"]').addEventListener('click', animateProgressBars);
-        document.querySelector('[data-tab="progress"]').addEventListener('click', animateProgressBars);
-        
-        // Add fadeOut animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeOut {
-                from { opacity: 1; transform: translateX(0); }
-                to { opacity: 0; transform: translateX(100px); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Initialize with first unit open
-        document.querySelector('.unit').classList.add('active');
-        
-        // Cargar algunos archivos de ejemplo
-        window.addEventListener('load', function() {
-            // Estos son archivos de ejemplo que se cargan automáticamente
-            // En una aplicación real, estos vendrían de una base de datos o almacenamiento
-            const exampleFiles = [
-                {
-                    name: "Análisis_Patrones_Espaciales.pdf",
-                    type: "application/pdf",
-                    size: 2400000,
-                    unit: "1",
-                    content: new Blob(["Este es un ejemplo de archivo PDF. En una aplicación real, este sería un PDF real."], {type: "application/pdf"})
-                },
-                {
-                    name: "Script_Analisis_R.R",
-                    type: "text/plain",
-                    size: 156000,
-                    unit: "1",
-                    content: new Blob(["# Ejemplo de script en R\n\n# Cargar librerías\nlibrary(sp)\nlibrary(gstat)\n\n# Análisis de datos espaciales\ndatos <- read.csv('datos_espaciales.csv')\ncoordinates(datos) <- ~x+y\n\n# Crear variograma\nvariograma <- variogram(z~1, datos)\nplot(variograma)"], {type: "text/plain"})
-                }
-            ];
-            
-            // Agregar archivos de ejemplo a la unidad 1
-            exampleFiles.forEach((file, index) => {
-                const fileId = 'example_file_' + index;
-                const fileData = {
-                    id: fileId,
-                    name: file.name,
-                    type: file.type,
-                    size: file.size,
-                    content: file.content,
-                    unit: file.unit
-                };
-                
-                storedFiles[`unit${file.unit}`].push(fileData);
-                
-                const fileList = document.getElementById(`file-list-${file.unit}`);
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.id = fileId;
-                
-                const fileIcon = file.type === 'application/pdf' ? 
-                    'fa-file-pdf' : 
-                    'fa-file-code';
-                
-                fileItem.innerHTML = `
-                    <div class="file-info">
-                        <i class="fas ${fileIcon} file-icon"></i>
-                        <div>
-                            <div>${file.name}</div>
-                            <small>Subido: ${new Date().toLocaleDateString()} - ${(file.size / 1024 / 1024).toFixed(2)} MB</small>
-                        </div>
-                    </div>
-                    <div class="file-actions">
-                        <button title="Vista previa" onclick="viewFile('${fileId}')"><i class="fas fa-eye"></i></button>
-                        <button title="Descargar" onclick="downloadFile('${fileId}')"><i class="fas fa-download"></i></button>
-                        <button title="Eliminar" onclick="deleteFile('${fileId}')"><i class="fas fa-trash"></i></button>
-                    </div>
-                `;
-                
-                fileList.appendChild(fileItem);
-            });
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Te responderé pronto.');
+            this.reset();
         });
     </script>
 </body>
